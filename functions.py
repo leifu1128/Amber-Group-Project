@@ -13,7 +13,7 @@ def calc_beta_naive(length, stk, ind):
             index_slice = ind[i - length:i]
             x_mean = np.mean(index_slice)
             y_mean = np.mean(stock_slice)
-            beta = np.sum((index_slice - x_mean) * (stock_slice - y_mean))/np.sum((index_slice - x_mean) ** 2)
+            beta = np.sum((index_slice - x_mean) * (stock_slice - y_mean)) / np.sum((index_slice - x_mean) ** 2)
             beta_vector.append(beta)
 
         output.append(beta_vector)
@@ -33,3 +33,12 @@ def calc_beta(length, stk, ind):
         output.append(beta_vector[1])
 
     return np.asarray(output)
+
+
+# Calculates Return from Log Return
+def calc_return(lr, pct):
+    if pct:
+        return (np.exp(lr) - 1) * 100
+
+    else:
+        return np.exp(lr) - 1
